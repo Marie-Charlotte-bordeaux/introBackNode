@@ -1,6 +1,8 @@
 import readline from 'readline/promises';
 import fs from 'fs/promises';
 
+
+// 2. Demander a l'utilisateur de vous donner : nom, prmnom et age
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
@@ -14,8 +16,12 @@ async function createUser() {
 
     const userData = `Nom: ${nom}\nPrénom: ${prenom}\nÂge: ${age}`;
 
-      // Pour creer un fichier txt user
-      fs.writeFile('user.txt', userData);
+      // Pour creer un fichier txt user nom prenom et age
+      // permet a chque utilisateur davoir son fichier
+      fs.writeFile(`${nom}_${prenom}.txt`, userData, (err) =>{
+        console.log('err', err)
+        return;
+      });
 
     console.log(`Bonjour ${prenom} ${nom}, vous avez ${age} ans.`);
 
